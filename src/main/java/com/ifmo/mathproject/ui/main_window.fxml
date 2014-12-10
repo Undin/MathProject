@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.GridPane?>
+<GridPane alignment="CENTER" hgap="10.0" maxHeight="600.0" maxWidth="1000.0" minHeight="600.0" minWidth="1000.0"
+          prefHeight="800.0" prefWidth="1400.0" vgap="10.0" xmlns:fx="http://javafx.com/fxml/1"
+          xmlns="http://javafx.com/javafx/2.2" fx:controller="com.ifmo.mathproject.ui.Controller">
+</GridPane>
