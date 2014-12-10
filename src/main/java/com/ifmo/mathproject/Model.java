@@ -6,7 +6,7 @@ package com.ifmo.mathproject;
 public class Model {
 
     public static final double R = 8.134;
-    
+
     public static final double DEFAULT_K = 1.6 * 1e6;
     public static final double DEFAULT_E = 8 * 1e4;
     public static final double DEFAULT_alpha = 1;
@@ -17,9 +17,8 @@ public class Model {
     public static final double DEFAULT_lambda = 0.13;
     public static final double DEFAULT_D = DEFAULT_lambda / (DEFAULT_p * DEFAULT_c);
 
-    private final double dx;
-    private final double dt;
-
+    private double dx = 0.1;
+    private double dt = 0.1;
     private double K = DEFAULT_K;
     private double E = DEFAULT_E;
     private double alpha = DEFAULT_alpha;
@@ -30,9 +29,22 @@ public class Model {
     private double lambda = DEFAULT_lambda;
     private double D = DEFAULT_D;
 
-    public Model(double dx, double dt) {
+    public double getDx() {
+        return dx;
+    }
+
+    public Model setDx(double dx) {
         this.dx = dx;
+        return this;
+    }
+
+    public double getDt() {
+        return dt;
+    }
+
+    public Model setDt(double dt) {
         this.dt = dt;
+        return this;
     }
 
     public double getK() {
@@ -120,11 +132,28 @@ public class Model {
         return this;
     }
 
-    public double getDx() {
-        return dx;
+    public double getTm() {
+        return T0 + Q / c;
     }
 
-    public double getDt() {
-        return dt;
+    public double getBetta() {
+        return R * getTm() / E;
     }
+
+    public double getGamma() {
+        return R * Math.pow(getTm(), 2) / (E * (Q / c));
+    }
+
+    public double getU() {
+        return Math.pow(2 * K * lambda * R * Math.pow(getTm(), 2) * Math.exp(-1 / getBetta()) / (Q * p * E), 0.5);
+    }
+
+    public double getDeltaH() {
+        return lambda / (p * c * getU());
+    }
+
+    public double getDeltaR() {
+        return getDeltaH() * getBetta();
+    }
+
 }
