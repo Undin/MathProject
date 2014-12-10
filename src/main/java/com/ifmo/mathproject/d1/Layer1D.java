@@ -7,10 +7,17 @@ import com.ifmo.mathproject.Layer;
  */
 public class Layer1D extends Layer<double[]> {
 
+    private final int size;
+
     public Layer1D(double[] concentration, double[] temperature) {
         super(concentration, temperature);
         if (concentration.length != temperature.length) {
             throw new IllegalArgumentException("concentration.length != temperature.length");
         }
+        size = concentration.length;
+    }
+
+    public int size() {
+        return size;
     }
 }
