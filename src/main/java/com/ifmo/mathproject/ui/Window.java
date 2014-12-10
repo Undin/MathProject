@@ -18,7 +18,7 @@ public class Window extends Application {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setResizable(false);
-        stage.setTitle("PDE");
+        stage.setTitle("Math project");
         stage.show();
     }
 
