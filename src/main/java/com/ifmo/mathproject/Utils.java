@@ -20,7 +20,7 @@ public class Utils {
         double[] beta = new double[length];
         alpha[0] = -c[0] / b[0];
         beta[0] = d[0] / b[0];
-        for (int i = 1; i < length; i++) {
+        for (int i = 1; i < length - 1; i++) {
             alpha[i] = -c[i] / (a[i] * alpha[i - 1] + b[i]);
             beta[i] = (d[i] - a[i] * beta[i - 1]) / (a[i] * alpha[i - 1] + b[i]);
         }
