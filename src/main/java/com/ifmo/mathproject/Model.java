@@ -19,6 +19,8 @@ public class Model {
 
     private double dx = 0.1;
     private double dt = 0.1;
+    private int N = 100;
+    private double initT = 350;
     private double K = DEFAULT_K;
     private double E = DEFAULT_E;
     private double alpha = DEFAULT_alpha;
@@ -28,6 +30,24 @@ public class Model {
     private double c = DEFAULT_c;
     private double lambda = DEFAULT_lambda;
     private double D = DEFAULT_D;
+
+    public int getN() {
+        return N;
+    }
+
+    public Model setN(int n) {
+        N = n;
+        return this;
+    }
+
+    public double getInitT() {
+        return initT;
+    }
+
+    public Model setInitT(double initT) {
+        this.initT = initT;
+        return this;
+    }
 
     public double getDx() {
         return dx;

@@ -45,6 +45,10 @@ public class Controller implements Initializable {
     @FXML
     private TextField deltaT;
     @FXML
+    private TextField stepNumber;
+    @FXML
+    private TextField initTemp;
+    @FXML
     private TextField kValue;
     @FXML
     private TextField eValue;
@@ -67,7 +71,6 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
         tempPlot.setCreateSymbols(false);
         tempPlot.setLegendVisible(false);
         tempPlot.getStyleClass().add("thick-chart");
@@ -80,6 +83,8 @@ public class Controller implements Initializable {
 
         deltaZ.setText(String.valueOf(model.getDx()));
         deltaT.setText(String.valueOf(model.getDt()));
+        stepNumber.setText(String.valueOf(model.getN()));
+        initTemp.setText(String.valueOf(model.getInitT()));
         kValue.setText(String.valueOf(model.getK()));
         eValue.setText(String.valueOf(model.getE()));
         alphaValue.setText(String.valueOf(model.getAlpha()));
@@ -92,6 +97,8 @@ public class Controller implements Initializable {
 
         deltaZ.textProperty().addListener((observable, oldValue, newValue) -> changeValues());
         deltaT.textProperty().addListener((observable, oldValue, newValue) -> changeValues());
+        stepNumber.textProperty().addListener((observable, oldValue, newValue) -> changeValues());
+        initTemp.textProperty().addListener((observable, oldValue, newValue) -> changeValues());
         kValue.textProperty().addListener((observable, oldValue, newValue) -> changeValues());
         eValue.textProperty().addListener((observable, oldValue, newValue) -> changeValues());
         alphaValue.textProperty().addListener((observable, oldValue, newValue) -> changeValues());
@@ -122,6 +129,8 @@ public class Controller implements Initializable {
         try {
             model.setDx(Double.parseDouble(deltaZ.getText()))
                     .setDt(Double.parseDouble(deltaT.getText()))
+                    .setN(Integer.parseInt(stepNumber.getText()))
+                    .setInitT(Double.parseDouble(initTemp.getText()))
                     .setK(Double.parseDouble(kValue.getText()))
                     .setE(Double.parseDouble(eValue.getText()))
                     .setAlpha(Double.parseDouble(alphaValue.getText()))
