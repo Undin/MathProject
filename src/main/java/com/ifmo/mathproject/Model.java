@@ -16,6 +16,9 @@ public class Model {
     public static final double DEFAULT_lambda = 0.13;
     public static final double DEFAULT_D = DEFAULT_lambda / (DEFAULT_p * DEFAULT_c);
 
+    private final double dx;
+    private final double dt;
+
     private double K = DEFAULT_K;
     private double E = DEFAULT_E;
     private double R = DEFAULT_R;
@@ -26,6 +29,11 @@ public class Model {
     private double c = DEFAULT_c;
     private double lambda = DEFAULT_lambda;
     private double D = DEFAULT_D;
+
+    public Model(double dx, double dt) {
+        this.dx = dx;
+        this.dt = dt;
+    }
 
     public double getK() {
         return K;
@@ -115,5 +123,13 @@ public class Model {
     public Model setD(double d) {
         D = d;
         return this;
+    }
+
+    public double getDx() {
+        return dx;
+    }
+
+    public double getDt() {
+        return dt;
     }
 }
