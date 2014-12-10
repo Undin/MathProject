@@ -41,8 +41,8 @@ public class SimplePartialImplicitMethod extends Method1D {
             next[i] = -lambdaDivCDivP;
             freeCoef[i] = dx2OnKOnQDivC * Math.pow(newConcentration[i], model.getAlpha()) * Math.exp(-EOnR / prevLayer.getTemperature()[i]) + dx2DivDt * prevLayer.getTemperature()[i];
         }
-
         double[] newTemperature = Utils.tridiagonalMatrixAlgorithm(prev, cur, next, freeCoef);
+
         return new Layer1D(newConcentration, newTemperature);
     }
 }
