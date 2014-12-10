@@ -5,9 +5,10 @@ package com.ifmo.mathproject;
  */
 public class Model {
 
+    public static final double R = 8.134;
+    
     public static final double DEFAULT_K = 1.6 * 1e6;
     public static final double DEFAULT_E = 8 * 1e4;
-    public static final double DEFAULT_R = 8.134;
     public static final double DEFAULT_alpha = 1;
     public static final double DEFAULT_Q = 7 * 1e5;
     public static final double DEFAULT_p = 830;
@@ -21,7 +22,6 @@ public class Model {
 
     private double K = DEFAULT_K;
     private double E = DEFAULT_E;
-    private double R = DEFAULT_R;
     private double alpha = DEFAULT_alpha;
     private double Q = DEFAULT_Q;
     private double p = DEFAULT_p;
@@ -55,11 +55,6 @@ public class Model {
 
     public double getR() {
         return R;
-    }
-
-    public Model setR(double r) {
-        R = r;
-        return this;
     }
 
     public double getAlpha() {
