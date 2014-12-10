@@ -1,7 +1,24 @@
 apply plugin: 'java'
+apply from: 'http://dl.bintray.com/content/shemnon/javafx-gradle/0.4.0/javafx.plugin'
 
 sourceCompatibility = 1.8
 version = '1.0'
+
+sourceSets {
+    main {
+        resources {
+            srcDirs = ["src/main/java"]
+            includes = ["**/*.fxml"]
+        }
+    }
+}
+
+javafx {
+    appID 'FXMLExample'
+    appName 'fxml example application'
+    mainClass 'com.ifmo.mathproject.ui.Window'
+}
+
 
 repositories {
     mavenCentral()
