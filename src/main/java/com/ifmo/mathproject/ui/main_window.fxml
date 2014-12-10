@@ -1,7 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.GridPane?>
-<GridPane alignment="CENTER" hgap="10.0" maxHeight="600.0" maxWidth="1000.0" minHeight="600.0" minWidth="1000.0"
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.layout.*?>
+<?import java.net.URL?>
+<GridPane alignment="TOP_LEFT" hgap="10.0" maxHeight="800.0" maxWidth="1400.0" minHeight="800.0" minWidth="1400.0"
           prefHeight="800.0" prefWidth="1400.0" vgap="10.0" xmlns:fx="http://javafx.com/fxml/1"
           xmlns="http://javafx.com/javafx/2.2" fx:controller="com.ifmo.mathproject.ui.Controller">
+    <children>
+        <LineChart id="LineChart" fx:id="concPlot" maxHeight="400.0" maxWidth="700.0" minHeight="400.0" minWidth="700.0"
+                   prefHeight="400.0" prefWidth="700.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
+            <xAxis>
+                <NumberAxis label="z" lowerBound="0" upperBound="3" tickUnit="1"/>
+            </xAxis>
+            <yAxis>
+                <NumberAxis label="X" lowerBound="0" upperBound="3" tickUnit="1"/>
+            </yAxis>
+            <GridPane.margin>
+                <Insets left="700.0" top="-400.0"/>
+            </GridPane.margin>
+        </LineChart>
+        <LineChart id="LineChart" fx:id="velPlot" maxHeight="400.0" maxWidth="700.0" minHeight="400.0" minWidth="700.0"
+                   prefHeight="400.0" prefWidth="700.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
+            <xAxis>
+                <NumberAxis label="z" lowerBound="0" upperBound="3" tickUnit="1"/>
+            </xAxis>
+            <yAxis>
+                <NumberAxis label="w" lowerBound="0" upperBound="3" tickUnit="1"/>
+            </yAxis>
+            <GridPane.margin>
+                <Insets top="400.0"/>
+            </GridPane.margin>
+        </LineChart>
+        <LineChart id="LineChart" fx:id="tempPlot" maxHeight="400.0" maxWidth="700.0" minHeight="400.0" minWidth="700.0"
+                   prefHeight="400.0" prefWidth="700.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
+            <xAxis>
+                <NumberAxis label="z" lowerBound="0" upperBound="3" tickUnit="1"/>
+            </xAxis>
+            <yAxis>
+                <NumberAxis label="T" lowerBound="0" upperBound="3" tickUnit="1"/>
+            </yAxis>
+            <GridPane.margin>
+                <Insets top="-400.0"/>
+            </GridPane.margin>
+        </LineChart>
+    </children>
+    <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"/>
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
+    </rowConstraints>
+    <stylesheets>
+        <URL value="@style.css"/>
+    </stylesheets>
 </GridPane>
