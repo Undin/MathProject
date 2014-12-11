@@ -11,15 +11,22 @@ import javafx.stage.Stage;
  */
 public class Window extends Application {
 
+    FXMLLoader loader;
+
     @Override
     public void start(Stage stage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("main_window.fxml"));
+        loader = new FXMLLoader(getClass().getResource("main_window.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setResizable(false);
         stage.setTitle("Math project");
         stage.show();
+    }
+
+    @Override
+    public void stop() throws Exception {
+        ((Controller) loader.getController()).stopTimer();
     }
 
     public static void main(String[] args) {

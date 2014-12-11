@@ -1,17 +1,24 @@
 package com.ifmo.mathproject.ui;
 
 import com.ifmo.mathproject.Model;
+import com.ifmo.mathproject.d1.Layer1D;
+import com.ifmo.mathproject.d1.SimplePartialImplicitMethod;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * Created by Whiplash on 10.12.2014.
@@ -41,6 +48,13 @@ public class Controller implements Initializable {
     private Label tm;
 
     @FXML
+    private Button start;
+    @FXML
+    private Button pause;
+    @FXML
+    private Button resume;
+
+    @FXML
     private TextField deltaZ;
     @FXML
     private TextField deltaT;
@@ -68,6 +82,12 @@ public class Controller implements Initializable {
     private TextField dValue;
 
     private Model model = new Model();
+    private double[] steps;
+    private Layer1D prevLayer;
+    private Layer1D curLayer;
+    private SimplePartialImplicitMethod method;
+
+    private Timer timer;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -124,6 +144,79 @@ public class Controller implements Initializable {
         lineChartData.add(series);
         plot.setData(lineChartData);
     }
+
+
+    @FXML
+    private void startClick(ActionEvent event) {
+        pauseClick(event);
+        resume.setDisable(true);
+
+        double[] temperature = new double[model.getN()];
+        temperature[0] = model.getInitT();
+        for (int i = 1; i < temperature.length; i++) {
+            temperature[i] = model.getT0();
+        }
+
+        double[] concentration = new double[model.getN()];
+        concentration[0] = 0;
+        for (int i = 1; i < concentration.length; i++) {
+            concentration[i] = 1;
+        }
+
+        steps = new double[model.getN()];
+        for (int i = 0; i < concentration.length; i++) {
+            steps[i] = i * model.getDx();
+        }
+
+        method = new SimplePartialImplicitMethod(model);
+        prevLayer = new Layer1D(concentration, temperature);
+        curLayer = method.nextLayer(prevLayer);
+        drawLayer();
+        resumeClick(event);
+    }
+
+    private void drawLayer() {
+        setPlot(tempPlot, steps, curLayer.getTemperature());
+        setPlot(concPlot, steps, curLayer.getConcentration());
+        double[] w = new double[model.getN()];
+        for (int i = 0; i < w.length; i++) {
+            w[i] = -(curLayer.getConcentration()[i] - prevLayer.getConcentration()[i]) / model.getDt();
+        }
+        setPlot(velPlot, steps, w);
+    }
+
+    @FXML
+    private void pauseClick(ActionEvent event) {
+        if (timer != null) {
+            timer.cancel();
+            resume.setDisable(false);
+        }
+    }
+
+    public void stopTimer() {
+        if (timer != null) {
+            timer.cancel();
+        }
+    }
+
+    @FXML
+    private void resumeClick(ActionEvent event) {
+        timer = new Timer();
+        if (model != null) {
+            timer.schedule(new Drawer(), 0, 500);
+        }
+        resume.setDisable(true);
+    }
+
+    private class Drawer extends TimerTask {
+        @Override
+        public void run() {
+            prevLayer = curLayer;
+            curLayer = method.nextLayer(prevLayer);
+            Platform.runLater(Controller.this::drawLayer);
+        }
+    }
+
 
     private void changeValues() {
         try {

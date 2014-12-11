@@ -139,8 +139,16 @@
                 <Insets right="10.0" fx:id="x2" />
               </HBox.margin>
             </TextField>
-            <Label id="deltaH" font="$x3" text="To = " HBox.margin="$x5" />
-            <TextField id="deltaT" fx:id="initTemp" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" HBox.margin="$x2" />
+            <Label id="deltaH" font="$x3" text="To = ">
+              <HBox.margin>
+                <Insets left="10.0" fx:id="x5" />
+              </HBox.margin>
+            </Label>
+            <TextField id="deltaT" fx:id="initTemp" maxWidth="100.0" minWidth="100.0" prefWidth="100.0">
+              <HBox.margin>
+                <Insets right="10.0" fx:id="x2" />
+              </HBox.margin>
+            </TextField>
           </children>
           <padding>
             <Insets />
@@ -262,6 +270,24 @@
           <padding>
             <Insets />
           </padding>
+        </HBox>
+        <HBox alignment="CENTER" prefHeight="37.0" prefWidth="700.0">
+          <children>
+            <Button fx:id="start" font="$x3" mnemonicParsing="false" onAction="#startClick" text="Start">
+              <HBox.margin>
+                <Insets left="10.0" right="10.0" fx:id="x6" />
+              </HBox.margin>
+            </Button>
+            <Button id="start" fx:id="pause" font="$x3" mnemonicParsing="false" onAction="#pauseClick" text="Pause">
+              <HBox.margin>
+                <Insets left="10.0" right="10.0" fx:id="x6" />
+              </HBox.margin>
+            </Button>
+            <Button id="start" fx:id="resume" font="$x3" mnemonicParsing="false" onAction="#resumeClick" text="Resume" HBox.margin="$x6" />
+          </children>
+          <VBox.margin>
+            <Insets top="20.0" />
+          </VBox.margin>
         </HBox>
       </children>
       <GridPane.margin>
