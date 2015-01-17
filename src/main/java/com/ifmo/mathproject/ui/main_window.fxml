@@ -139,12 +139,12 @@
                 <Insets right="10.0" fx:id="x2" />
               </HBox.margin>
             </TextField>
-            <Label id="deltaH" font="$x3" text="To = ">
+            <Label id="deltaH" font="$x3" text="Tw = ">
               <HBox.margin>
                 <Insets left="10.0" fx:id="x5" />
               </HBox.margin>
             </Label>
-            <TextField id="deltaT" fx:id="tValue" maxWidth="80.0" minWidth="80.0" prefWidth="80.0">
+            <TextField id="deltaT" fx:id="twValue" maxWidth="100.0" minWidth="100.0" prefWidth="100.0">
               <HBox.margin>
                 <Insets right="10.0" fx:id="x2" />
               </HBox.margin>
@@ -216,12 +216,12 @@
                 <Insets right="10.0" fx:id="x2" />
               </HBox.margin>
             </TextField>
-            <Label id="deltaH" font="$x3" text="Tw = ">
+            <Label id="deltaH" font="$x3" text="To = ">
               <HBox.margin>
                 <Insets left="10.0" fx:id="x5" />
               </HBox.margin>
             </Label>
-            <TextField id="deltaT" fx:id="twValue" maxWidth="100.0" minWidth="100.0" prefWidth="100.0">
+            <TextField id="deltaT" fx:id="tValue" maxWidth="80.0" minWidth="80.0" prefWidth="80.0">
               <HBox.margin>
                 <Insets right="10.0" fx:id="x2" />
               </HBox.margin>
