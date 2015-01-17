@@ -12,9 +12,9 @@
 <?import javafx.scene.text.*?>
 <?import javafx.scene.text.Font?>
 
-<GridPane alignment="TOP_LEFT" hgap="10.0" maxHeight="800.0" maxWidth="1400.0" minHeight="800.0" minWidth="1400.0" prefHeight="800.0" prefWidth="1400.0" vgap="10.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.ifmo.mathproject.ui.Controller">
+<GridPane alignment="TOP_LEFT" hgap="10.0" maxHeight="600.0" maxWidth="1200.0" minHeight="600.0" minWidth="1200.0" prefHeight="600.0" prefWidth="1200.0" vgap="10.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.ifmo.mathproject.ui.Controller">
   <children>
-    <LineChart fx:id="concPlot" maxHeight="400.0" maxWidth="700.0" minHeight="400.0" minWidth="700.0" prefHeight="400.0" prefWidth="700.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
+    <LineChart fx:id="concPlot" maxHeight="300.0" maxWidth="600.0" minHeight="300.0" minWidth="600.0" prefHeight="300.0" prefWidth="600.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
       <xAxis>
         <NumberAxis label="z" lowerBound="0.0" tickUnit="1.0" upperBound="3.0" />
       </xAxis>
@@ -22,10 +22,10 @@
         <NumberAxis label="X" lowerBound="0.0" tickUnit="1.0" upperBound="3.0" />
       </yAxis>
       <GridPane.margin>
-        <Insets left="700.0" top="-400.0" />
+        <Insets left="600.0" top="-300.0" />
       </GridPane.margin>
     </LineChart>
-    <LineChart fx:id="velPlot" maxHeight="400.0" maxWidth="700.0" minHeight="400.0" minWidth="700.0" prefHeight="400.0" prefWidth="700.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
+    <LineChart fx:id="velPlot" maxHeight="300.0" maxWidth="600.0" minHeight="300.0" minWidth="600.0" prefHeight="300.0" prefWidth="600.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
       <xAxis>
         <NumberAxis label="z" lowerBound="0.0" tickUnit="1.0" upperBound="3.0" />
       </xAxis>
@@ -33,10 +33,10 @@
         <NumberAxis label="w" lowerBound="0.0" tickUnit="1.0" upperBound="3.0" />
       </yAxis>
       <GridPane.margin>
-        <Insets top="400.0" />
+        <Insets top="300.0" />
       </GridPane.margin>
     </LineChart>
-    <LineChart fx:id="tempPlot" maxHeight="400.0" maxWidth="700.0" minHeight="400.0" minWidth="700.0" prefHeight="400.0" prefWidth="700.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
+    <LineChart fx:id="tempPlot" maxHeight="300.0" maxWidth="600.0" minHeight="300.0" minWidth="600.0" prefHeight="300.0" prefWidth="600.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
       <xAxis>
         <NumberAxis label="z" lowerBound="0.0" tickUnit="1.0" upperBound="3.0" />
       </xAxis>
@@ -44,10 +44,10 @@
         <NumberAxis label="T" lowerBound="0.0" tickUnit="1.0" upperBound="3.0" />
       </yAxis>
       <GridPane.margin>
-        <Insets top="-400.0" />
+        <Insets top="-300.0" />
       </GridPane.margin>
     </LineChart>
-    <VBox alignment="CENTER" maxHeight="400.0" maxWidth="700.0" minHeight="400.0" minWidth="700.0" prefHeight="400.0" prefWidth="700.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
+    <VBox alignment="CENTER" maxHeight="300.0" maxWidth="600.0" minHeight="300.0" minWidth="600.0" prefHeight="300.0" prefWidth="600.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
       <children>
         <HBox alignment="CENTER" prefHeight="22.0" prefWidth="700.0">
           <children>
@@ -114,7 +114,7 @@
                 <Insets left="10.0" fx:id="x5" />
               </HBox.margin>
             </Label>
-            <TextField id="deltaX" fx:id="deltaZ" maxWidth="100.0" minWidth="100.0" prefWidth="100.0">
+            <TextField id="deltaX" fx:id="deltaZ" maxWidth="80.0" minWidth="80.0" prefWidth="80.0">
               <HBox.margin>
                 <Insets right="10.0" fx:id="x2" />
               </HBox.margin>
@@ -124,7 +124,7 @@
                 <Insets left="10.0" fx:id="x5" />
               </HBox.margin>
             </Label>
-            <TextField fx:id="deltaT" maxWidth="100.0" minWidth="100.0" prefWidth="100.0">
+            <TextField fx:id="deltaT" maxWidth="80.0" minWidth="80.0" prefWidth="80.0">
               <HBox.margin>
                 <Insets right="10.0" fx:id="x2" />
               </HBox.margin>
@@ -134,7 +134,7 @@
                 <Insets left="10.0" fx:id="x5" />
               </HBox.margin>
             </Label>
-            <TextField id="deltaT" fx:id="stepNumber" maxWidth="100.0" minWidth="100.0" prefWidth="100.0">
+            <TextField id="deltaT" fx:id="stepNumber" maxWidth="80.0" minWidth="80.0" prefWidth="80.0">
               <HBox.margin>
                 <Insets right="10.0" fx:id="x2" />
               </HBox.margin>
@@ -144,7 +144,7 @@
                 <Insets left="10.0" fx:id="x5" />
               </HBox.margin>
             </Label>
-            <TextField id="deltaT" fx:id="initTemp" maxWidth="100.0" minWidth="100.0" prefWidth="100.0">
+            <TextField id="deltaT" fx:id="initTemp" maxWidth="80.0" minWidth="80.0" prefWidth="80.0">
               <HBox.margin>
                 <Insets right="10.0" fx:id="x2" />
               </HBox.margin>
@@ -154,10 +154,10 @@
             <Insets />
           </padding>
           <VBox.margin>
-            <Insets top="30.0" fx:id="x4" />
+            <Insets top="10.0" fx:id="x1" />
           </VBox.margin>
         </HBox>
-        <HBox alignment="CENTER" prefHeight="22.0" prefWidth="700.0" VBox.margin="$x4">
+        <HBox alignment="CENTER" prefHeight="22.0" prefWidth="700.0" VBox.margin="$x1">
           <children>
             <Label id="deltaH" font="$x3" text="K = ">
               <HBox.margin>
@@ -234,7 +234,7 @@
             <Insets top="10.0" fx:id="x1" />
           </VBox.margin>
         </HBox>
-        <HBox alignment="CENTER" prefHeight="22.0" prefWidth="700.0" VBox.margin="$x1">
+        <HBox alignment="CENTER" prefHeight="22.0" prefWidth="700.0">
           <children>
             <Label id="deltaH" font="$x3" text="λ = ">
               <HBox.margin>
@@ -270,6 +270,9 @@
           <padding>
             <Insets />
           </padding>
+          <VBox.margin>
+            <Insets top="10.0" fx:id="x1" />
+          </VBox.margin>
         </HBox>
         <HBox alignment="CENTER" prefHeight="37.0" prefWidth="700.0">
           <children>
@@ -291,7 +294,7 @@
         </HBox>
       </children>
       <GridPane.margin>
-        <Insets left="700.0" top="400.0" />
+        <Insets left="600.0" top="300.0" />
       </GridPane.margin>
     </VBox>
   </children>

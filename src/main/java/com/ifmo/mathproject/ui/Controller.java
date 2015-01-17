@@ -2,6 +2,8 @@ package com.ifmo.mathproject.ui;
 
 import com.ifmo.mathproject.Model;
 import com.ifmo.mathproject.d1.Layer1D;
+import com.ifmo.mathproject.d1.Method1D;
+import com.ifmo.mathproject.d1.PredictorCorrectorMethod;
 import com.ifmo.mathproject.d1.SimplePartialImplicitMethod;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -85,7 +87,7 @@ public class Controller implements Initializable {
     private double[] steps;
     private Layer1D prevLayer;
     private Layer1D curLayer;
-    private SimplePartialImplicitMethod method;
+    private Method1D method;
 
     private Timer timer;
 
@@ -168,7 +170,7 @@ public class Controller implements Initializable {
             steps[i] = i * model.getDx();
         }
 
-        method = new SimplePartialImplicitMethod(model);
+        method = new PredictorCorrectorMethod(model);
         prevLayer = new Layer1D(concentration, temperature);
         curLayer = method.nextLayer(prevLayer);
         drawLayer();
