@@ -158,9 +158,9 @@ public class Controller implements Initializable {
         resume.setDisable(true);
 
         double[] temperature = new double[model.getN()];
-        temperature[0] = model.getInitT();
+        temperature[0] = model.getTw();
         for (int i = 1; i < temperature.length; i++) {
-            temperature[i] = model.getTw();
+            temperature[i] = model.getInitT();
         }
 
         double[] concentration = new double[model.getN()];
