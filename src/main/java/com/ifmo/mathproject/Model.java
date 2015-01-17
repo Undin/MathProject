@@ -20,7 +20,7 @@ public class Model {
     private double dx = 0.00001;
     private double dt = 0.00001;
     private int N = 1000;
-    private double initT = 350;
+    private double initT = 600;
     private double K = DEFAULT_K;
     private double E = DEFAULT_E;
     private double alpha = DEFAULT_alpha;
