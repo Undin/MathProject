@@ -4,7 +4,6 @@ import com.ifmo.mathproject.Model;
 import com.ifmo.mathproject.d1.Layer1D;
 import com.ifmo.mathproject.d1.Method1D;
 import com.ifmo.mathproject.d1.PredictorCorrectorMethod;
-import com.ifmo.mathproject.d1.SimplePartialImplicitMethod;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -82,12 +81,15 @@ public class Controller implements Initializable {
     private TextField cValue;
     @FXML
     private TextField dValue;
+    @FXML
+    private TextField speedValue;
 
     private Model model = new Model();
     private double[] steps;
     private Layer1D prevLayer;
     private Layer1D curLayer;
     private Method1D method;
+    private int speed = 500;
 
     private Timer timer;
 
@@ -116,6 +118,7 @@ public class Controller implements Initializable {
         lambdaValue.setText(String.valueOf(model.getLambda()));
         cValue.setText(String.valueOf(model.getC()));
         dValue.setText(String.valueOf(model.getD()));
+        speedValue.setText("500");
 
         deltaZ.textProperty().addListener((observable, oldValue, newValue) -> changeValues());
         deltaT.textProperty().addListener((observable, oldValue, newValue) -> changeValues());
@@ -130,6 +133,7 @@ public class Controller implements Initializable {
         lambdaValue.textProperty().addListener((observable, oldValue, newValue) -> changeValues());
         cValue.textProperty().addListener((observable, oldValue, newValue) -> changeValues());
         dValue.textProperty().addListener((observable, oldValue, newValue) -> changeValues());
+        speedValue.textProperty().addListener((observable, oldValue, newValue) -> changeValues());
         updateLabels();
     }
 
@@ -205,7 +209,7 @@ public class Controller implements Initializable {
     private void resumeClick(ActionEvent event) {
         timer = new Timer();
         if (model != null) {
-            timer.schedule(new Drawer(), 0, 500);
+            timer.schedule(new Drawer(), 0, speed);
         }
         resume.setDisable(true);
     }
@@ -235,6 +239,7 @@ public class Controller implements Initializable {
                     .setLambda(Double.parseDouble(lambdaValue.getText()))
                     .setC(Double.parseDouble(cValue.getText()))
                     .setD(Double.parseDouble(dValue.getText()));
+            speed = (int) Double.parseDouble(speedValue.getText());
             updateLabels();
         } catch (Exception e) {
             System.err.println(e.getMessage());
