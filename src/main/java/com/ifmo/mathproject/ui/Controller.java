@@ -3,6 +3,7 @@ package com.ifmo.mathproject.ui;
 import com.ifmo.mathproject.Model;
 import com.ifmo.mathproject.d1.Layer1D;
 import com.ifmo.mathproject.d1.Method1D;
+import com.ifmo.mathproject.d1.NewtonLinearization;
 import com.ifmo.mathproject.d1.PredictorCorrectorMethod;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -174,7 +175,7 @@ public class Controller implements Initializable {
             steps[i] = i * model.getDx();
         }
 
-        method = new PredictorCorrectorMethod(model);
+        method = new NewtonLinearization(model);
         prevLayer = new Layer1D(concentration, temperature);
         curLayer = method.nextLayer(prevLayer);
         drawLayer();
