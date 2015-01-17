@@ -62,7 +62,7 @@ public class Controller implements Initializable {
     @FXML
     private TextField stepNumber;
     @FXML
-    private TextField initTemp;
+    private TextField twValue;
     @FXML
     private TextField kValue;
     @FXML
@@ -108,13 +108,13 @@ public class Controller implements Initializable {
         deltaZ.setText(String.valueOf(model.getDx()));
         deltaT.setText(String.valueOf(model.getDt()));
         stepNumber.setText(String.valueOf(model.getN()));
-        initTemp.setText(String.valueOf(model.getInitT()));
+        twValue.setText(String.valueOf(model.getTw()));
         kValue.setText(String.valueOf(model.getK()));
         eValue.setText(String.valueOf(model.getE()));
         alphaValue.setText(String.valueOf(model.getAlpha()));
         qValue.setText(String.valueOf(model.getQ()));
         pValue.setText(String.valueOf(model.getP()));
-        tValue.setText(String.valueOf(model.getT0()));
+        tValue.setText(String.valueOf(model.getInitT()));
         lambdaValue.setText(String.valueOf(model.getLambda()));
         cValue.setText(String.valueOf(model.getC()));
         dValue.setText(String.valueOf(model.getD()));
@@ -123,7 +123,7 @@ public class Controller implements Initializable {
         deltaZ.textProperty().addListener((observable, oldValue, newValue) -> changeValues());
         deltaT.textProperty().addListener((observable, oldValue, newValue) -> changeValues());
         stepNumber.textProperty().addListener((observable, oldValue, newValue) -> changeValues());
-        initTemp.textProperty().addListener((observable, oldValue, newValue) -> changeValues());
+        twValue.textProperty().addListener((observable, oldValue, newValue) -> changeValues());
         kValue.textProperty().addListener((observable, oldValue, newValue) -> changeValues());
         eValue.textProperty().addListener((observable, oldValue, newValue) -> changeValues());
         alphaValue.textProperty().addListener((observable, oldValue, newValue) -> changeValues());
@@ -160,7 +160,7 @@ public class Controller implements Initializable {
         double[] temperature = new double[model.getN()];
         temperature[0] = model.getInitT();
         for (int i = 1; i < temperature.length; i++) {
-            temperature[i] = model.getT0();
+            temperature[i] = model.getTw();
         }
 
         double[] concentration = new double[model.getN()];
@@ -229,13 +229,13 @@ public class Controller implements Initializable {
             model.setDx(Double.parseDouble(deltaZ.getText()))
                     .setDt(Double.parseDouble(deltaT.getText()))
                     .setN(Integer.parseInt(stepNumber.getText()))
-                    .setInitT(Double.parseDouble(initTemp.getText()))
+                    .setInitT(Double.parseDouble(tValue.getText()))
                     .setK(Double.parseDouble(kValue.getText()))
                     .setE(Double.parseDouble(eValue.getText()))
                     .setAlpha(Double.parseDouble(alphaValue.getText()))
                     .setQ(Double.parseDouble(qValue.getText()))
                     .setP(Double.parseDouble(pValue.getText()))
-                    .setT0(Double.parseDouble(tValue.getText()))
+                    .setTw(Double.parseDouble(twValue.getText()))
                     .setLambda(Double.parseDouble(lambdaValue.getText()))
                     .setC(Double.parseDouble(cValue.getText()))
                     .setD(Double.parseDouble(dValue.getText()));

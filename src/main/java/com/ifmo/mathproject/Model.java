@@ -12,7 +12,7 @@ public class Model {
     public static final double DEFAULT_alpha = 1;
     public static final double DEFAULT_Q = 7 * 1e5;
     public static final double DEFAULT_p = 830;
-    public static final double DEFAULT_T0 = 293;
+    public static final double DEFAULT_Tw = 293;
     public static final double DEFAULT_c = 1980;
     public static final double DEFAULT_lambda = 0.13;
     public static final double DEFAULT_D = DEFAULT_lambda / (DEFAULT_p * DEFAULT_c);
@@ -26,7 +26,7 @@ public class Model {
     private double alpha = DEFAULT_alpha;
     private double Q = DEFAULT_Q;
     private double p = DEFAULT_p;
-    private double T0 = DEFAULT_T0;
+    private double Tw = DEFAULT_Tw;
     private double c = DEFAULT_c;
     private double lambda = DEFAULT_lambda;
     private double D = DEFAULT_D;
@@ -116,12 +116,12 @@ public class Model {
         return this;
     }
 
-    public double getT0() {
-        return T0;
+    public double getTw() {
+        return Tw;
     }
 
-    public Model setT0(double t0) {
-        T0 = t0;
+    public Model setTw(double tw) {
+        Tw = tw;
         return this;
     }
 
@@ -153,7 +153,7 @@ public class Model {
     }
 
     public double getTm() {
-        return T0 + Q / c;
+        return Tw + Q / c;
     }
 
     public double getBetta() {
