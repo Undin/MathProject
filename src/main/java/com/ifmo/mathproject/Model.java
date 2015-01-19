@@ -17,9 +17,9 @@ public class Model {
     public static final double DEFAULT_lambda = 0.13;
     public static final double DEFAULT_D = DEFAULT_lambda / (DEFAULT_p * DEFAULT_c);
 
-    private double dx = 0.00001;
-    private double dt = 0.00001;
-    private int N = 1000;
+    private double dx = 0.001;
+    private double dt = 1;
+    private int N = 100;
     private double initT = 293;
     private double K = DEFAULT_K;
     private double E = DEFAULT_E;

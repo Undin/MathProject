@@ -117,6 +117,9 @@ public class Controller implements Initializable {
         velPlot.setCreateSymbols(false);
         velPlot.setLegendVisible(false);
         velPlot.getStyleClass().add("thick-chart");
+        velPlot.setAnimated(false);
+        concPlot.setAnimated(false);
+        tempPlot.setAnimated(false);
 
         deltaZ.setText(String.valueOf(model.getDx()));
         deltaT.setText(String.valueOf(model.getDt()));
