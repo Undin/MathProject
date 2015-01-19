@@ -16,7 +16,7 @@ sourceSets {
 javafx {
     appID 'FXMLExample'
     appName 'fxml example application'
-    mainClass 'com.ifmo.mathproject.ui.Window'
+    mainClass 'com.ifmo.mathproject.d1ui.Window'
 }
 
 

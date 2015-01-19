@@ -1,4 +1,4 @@
-package com.ifmo.mathproject.ui;
+package com.ifmo.mathproject.d1ui;
 
 import com.ifmo.mathproject.d1.*;
 import javafx.application.Platform;
@@ -23,7 +23,7 @@ import java.util.TimerTask;
 /**
  * Created by Whiplash on 10.12.2014.
  */
-public class Controller implements Initializable {
+public class Controller1D implements Initializable {
 
     private static final String PREC = "%.8f";
 
@@ -283,7 +283,7 @@ public class Controller implements Initializable {
         public void run() {
             prevLayer = curLayer;
             curLayer = method.nextLayer(prevLayer);
-            Platform.runLater(Controller.this::drawLayer);
+            Platform.runLater(Controller1D.this::drawLayer);
         }
     }
 
