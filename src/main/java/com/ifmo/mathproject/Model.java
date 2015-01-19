@@ -153,7 +153,7 @@ public class Model {
     }
 
     public double getTm() {
-        return Tw + Q / c;
+        return initT + Q / c;
     }
 
     public double getBetta() {
