@@ -41,7 +41,7 @@ public class NewtonLinearization extends Method1D {
             next[i] = dDivDz2;
             freeCoef[i] = prevLayerConcentration[i] * (-invDt + model.getK() * (1 - model.getAlpha()) * exp);
         }
-        //freeCoef[0] -= prev[0] * prevIterationConcentration[0];
+        freeCoef[0] -= prev[0] * prevIterationConcentration[0];
         freeCoef[size - 1] -= next[size - 1] * prevIterationConcentration[size - 1];
 
         prevIterationConcentration = Utils.tridiagonalMatrixAlgorithm(prev, cur, next, freeCoef);
@@ -54,7 +54,7 @@ public class NewtonLinearization extends Method1D {
             next[i] = lambdaDivPCdz2;
             freeCoef[i] = -prevIterationTemperature[i] * invDt - ultimateFactor * (1 - eDivR / prevIterationTemperature[i]);
         }
-        //freeCoef[0] -= prev[0] * prevIterationTemperature[0];
+        freeCoef[0] -= prev[0] * prevIterationTemperature[0];
         freeCoef[size - 1] -= next[size - 1] * prevIterationTemperature[size - 1];
 
         prevIterationTemperature = Utils.tridiagonalMatrixAlgorithm(prev, cur, next, freeCoef);
