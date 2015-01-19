@@ -90,7 +90,7 @@ public class Controller implements Initializable {
     private Layer1D prevLayer;
     private Layer1D curLayer;
     private Method1D method;
-    private int speed = 500;
+    private int speed = 50;
 
     private Timer timer;
 
@@ -118,8 +118,8 @@ public class Controller implements Initializable {
         tValue.setText(String.valueOf(model.getInitT()));
         lambdaValue.setText(String.valueOf(model.getLambda()));
         cValue.setText(String.valueOf(model.getC()));
-        dValue.setText(String.valueOf(model.getD()));
-        speedValue.setText("500");
+        dValue.setText(String.format("%.9f", model.getD()));
+        speedValue.setText(String.valueOf(speed));
 
         deltaZ.textProperty().addListener((observable, oldValue, newValue) -> changeValues());
         deltaT.textProperty().addListener((observable, oldValue, newValue) -> changeValues());
