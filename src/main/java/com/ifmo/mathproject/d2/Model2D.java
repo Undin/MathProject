@@ -7,6 +7,15 @@ import com.ifmo.mathproject.d1.Model1D;
  */
 public class Model2D extends Model1D {
 
+    public double getDy() {
+        return dy;
+    }
+
+    public void setDy(double dy) {
+        this.dy = dy;
+    }
+
+    private double dy = 0.001;
     private int yN = 100;
 
     public int getYN() {
