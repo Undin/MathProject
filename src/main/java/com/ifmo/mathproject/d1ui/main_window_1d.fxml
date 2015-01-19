@@ -294,9 +294,6 @@
               <items>
                 <FXCollections fx:factory="observableArrayList" />
               </items>
-              <value>
-                <String fx:value="Partial Implicit" />
-              </value>
               <HBox.margin>
                 <Insets left="20.0" />
               </HBox.margin>
