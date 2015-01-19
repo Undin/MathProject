@@ -1,9 +1,6 @@
 package com.ifmo.mathproject.d2ui;
 
-import com.ifmo.mathproject.d2.Layer2D;
-import com.ifmo.mathproject.d2.Method2D;
-import com.ifmo.mathproject.d2.Model2D;
-import com.ifmo.mathproject.d2.StrangeMethod;
+import com.ifmo.mathproject.d2.*;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -207,7 +204,7 @@ public class Controller2D implements Initializable {
     private Method2D getMethod() {
         switch (methodsSelector.getValue()) {
             case "Explicit":
-                return new StrangeMethod(model);
+                return new ExplicitMethod(model);
             default:
                 return null;
         }
