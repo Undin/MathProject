@@ -2,54 +2,26 @@
 
 <?import java.lang.*?>
 <?import java.lang.String?>
-<?import java.net.*?>
-<?import java.net.URL?>
 <?import javafx.collections.*?>
 <?import javafx.collections.FXCollections?>
 <?import javafx.geometry.*?>
-<?import javafx.scene.chart.*?>
-<?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.ScatterChart?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.text.Font?>
 
-<GridPane alignment="TOP_LEFT" hgap="10.0" maxHeight="600.0" maxWidth="1200.0" minHeight="600.0" minWidth="1200.0" prefHeight="600.0" prefWidth="1200.0" vgap="10.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.ifmo.mathproject.ui.Controller">
+<GridPane alignment="TOP_LEFT" hgap="10.0" maxHeight="600.0" maxWidth="1200.0" minHeight="600.0" minWidth="1200.0" prefHeight="600.0" prefWidth="1200.0" vgap="10.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.ifmo.mathproject.d2ui.Controller2D">
   <children>
-    <LineChart fx:id="concPlot" maxHeight="300.0" maxWidth="600.0" minHeight="300.0" minWidth="600.0" prefHeight="300.0" prefWidth="600.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
-      <xAxis>
-        <NumberAxis label="z" lowerBound="0.0" tickUnit="1.0" upperBound="3.0" />
-      </xAxis>
-      <yAxis>
-        <NumberAxis label="X" lowerBound="0.0" tickUnit="1.0" upperBound="3.0" />
-      </yAxis>
-      <GridPane.margin>
-        <Insets left="600.0" top="-300.0" />
-      </GridPane.margin>
-    </LineChart>
-    <LineChart fx:id="velPlot" maxHeight="300.0" maxWidth="600.0" minHeight="300.0" minWidth="600.0" prefHeight="300.0" prefWidth="600.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
-      <xAxis>
-        <NumberAxis label="z" lowerBound="0.0" tickUnit="1.0" upperBound="3.0" />
-      </xAxis>
-      <yAxis>
-        <NumberAxis label="w" lowerBound="0.0" tickUnit="1.0" upperBound="3.0" />
-      </yAxis>
-      <GridPane.margin>
-        <Insets top="300.0" />
-      </GridPane.margin>
-    </LineChart>
-    <LineChart fx:id="tempPlot" maxHeight="300.0" maxWidth="600.0" minHeight="300.0" minWidth="600.0" prefHeight="300.0" prefWidth="600.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
-      <xAxis>
-        <NumberAxis label="z" lowerBound="0.0" tickUnit="1.0" upperBound="3.0" />
-      </xAxis>
-      <yAxis>
-        <NumberAxis label="T" lowerBound="0.0" tickUnit="1.0" upperBound="3.0" />
-      </yAxis>
+    <Pane fx:id="tempPlot" maxHeight="300.0" maxWidth="600.0" minHeight="300.0" minWidth="600.0" prefHeight="300.0" prefWidth="600.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
+      <padding>
+        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+      </padding>
       <GridPane.margin>
         <Insets top="-300.0" />
       </GridPane.margin>
-    </LineChart>
+    </Pane>
     <VBox alignment="CENTER" maxHeight="300.0" maxWidth="600.0" minHeight="300.0" minWidth="600.0" prefHeight="300.0" prefWidth="600.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
       <children>
         <HBox alignment="CENTER" prefHeight="22.0" prefWidth="700.0">
@@ -110,7 +82,7 @@
             <Insets top="5.0" fx:id="x4" />
           </padding>
         </HBox>
-        <HBox alignment="CENTER" prefHeight="22.0" prefWidth="700.0" VBox.margin="$x4">
+        <HBox alignment="CENTER" prefHeight="22.0" prefWidth="700.0">
           <children>
             <Label id="deltaH" font="$x3" text="Δz = ">
               <HBox.margin>
@@ -118,6 +90,16 @@
               </HBox.margin>
             </Label>
             <TextField id="deltaX" fx:id="deltaZ" maxWidth="80.0" minWidth="80.0" prefWidth="80.0">
+              <HBox.margin>
+                <Insets right="10.0" fx:id="x2" />
+              </HBox.margin>
+            </TextField>
+            <Label id="deltaH" font="$x3" text="Nz = ">
+              <HBox.margin>
+                <Insets left="10.0" fx:id="x5" />
+              </HBox.margin>
+            </Label>
+            <TextField id="deltaT" fx:id="stepNumberZ" maxWidth="80.0" minWidth="80.0" prefWidth="80.0">
               <HBox.margin>
                 <Insets right="10.0" fx:id="x2" />
               </HBox.margin>
@@ -132,12 +114,32 @@
                 <Insets right="10.0" fx:id="x2" />
               </HBox.margin>
             </TextField>
-            <Label id="deltaH" font="$x3" text="N = ">
+          </children>
+          <padding>
+            <Insets fx:id="x1" />
+          </padding>
+          <VBox.margin>
+            <Insets fx:id="x1" />
+          </VBox.margin>
+        </HBox>
+        <HBox alignment="CENTER" prefHeight="22.0" prefWidth="700.0" VBox.margin="$x1">
+          <children>
+            <Label id="deltaH" font="$x3" text="Δy = ">
               <HBox.margin>
                 <Insets left="10.0" fx:id="x5" />
               </HBox.margin>
             </Label>
-            <TextField id="deltaT" fx:id="stepNumber" maxWidth="80.0" minWidth="80.0" prefWidth="80.0">
+            <TextField id="deltaX" fx:id="deltaY" maxWidth="80.0" minWidth="80.0" prefWidth="80.0">
+              <HBox.margin>
+                <Insets right="10.0" fx:id="x2" />
+              </HBox.margin>
+            </TextField>
+            <Label id="deltaH" font="$x3" text="Ny = ">
+              <HBox.margin>
+                <Insets left="10.0" fx:id="x5" />
+              </HBox.margin>
+            </Label>
+            <TextField id="deltaT" fx:id="stepNumberY" maxWidth="80.0" minWidth="80.0" prefWidth="80.0">
               <HBox.margin>
                 <Insets right="10.0" fx:id="x2" />
               </HBox.margin>
@@ -154,10 +156,10 @@
             </TextField>
           </children>
           <padding>
-            <Insets />
+            <Insets fx:id="x1" />
           </padding>
         </HBox>
-        <HBox alignment="CENTER" prefHeight="22.0" prefWidth="700.0" VBox.margin="$x4">
+        <HBox alignment="CENTER" prefHeight="22.0" prefWidth="700.0">
           <children>
             <Label id="deltaH" font="$x3" text="K = ">
               <HBox.margin>
@@ -191,10 +193,13 @@
             </TextField>
           </children>
           <padding>
-            <Insets />
+            <Insets fx:id="x1" />
           </padding>
+          <VBox.margin>
+            <Insets fx:id="x1" />
+          </VBox.margin>
         </HBox>
-        <HBox alignment="CENTER" prefHeight="22.0" prefWidth="700.0" VBox.margin="$x4">
+        <HBox alignment="CENTER" prefHeight="22.0" prefWidth="700.0">
           <children>
             <Label id="deltaH" font="$x3" text="Q = ">
               <HBox.margin>
@@ -228,10 +233,13 @@
             </TextField>
           </children>
           <padding>
-            <Insets />
+            <Insets fx:id="x1" />
           </padding>
+          <VBox.margin>
+            <Insets fx:id="x1" />
+          </VBox.margin>
         </HBox>
-        <HBox alignment="CENTER" prefHeight="22.0" prefWidth="700.0" VBox.margin="$x4">
+        <HBox alignment="CENTER" prefHeight="22.0" prefWidth="700.0">
           <children>
             <Label id="deltaH" font="$x3" text="λ = ">
               <HBox.margin>
@@ -265,8 +273,11 @@
             </TextField>
           </children>
           <padding>
-            <Insets />
+            <Insets fx:id="x1" />
           </padding>
+          <VBox.margin>
+            <Insets fx:id="x1" />
+          </VBox.margin>
         </HBox>
         <HBox alignment="CENTER" maxHeight="37.0" minHeight="37.0" prefHeight="37.0" prefWidth="700.0">
           <children>
@@ -283,17 +294,20 @@
             <Button id="start" fx:id="resume" font="$x3" maxHeight="-1.0" minHeight="-1.0" mnemonicParsing="false" onAction="#resumeClick" prefHeight="-1.0" text="Resume" HBox.margin="$x6" />
           </children>
           <VBox.margin>
-            <Insets top="10.0" fx:id="x1" />
+            <Insets top="10.0" fx:id="x7" />
           </VBox.margin>
         </HBox>
-        <HBox alignment="CENTER" prefHeight="22.0" prefWidth="700.0" VBox.margin="$x4">
+        <HBox alignment="CENTER" prefHeight="22.0" prefWidth="700.0" VBox.margin="$x7">
           <children>
             <Label id="deltaH" font="$x3" text="speed = " />
             <TextField id="deltaT" fx:id="speedValue" maxWidth="80.0" minWidth="80.0" prefWidth="80.0" />
-            <ChoiceBox fx:id="methodsSelector">
+            <ChoiceBox fx:id="methodsSelector" value="SOME METHOD">
               <items>
                 <FXCollections fx:factory="observableArrayList" />
               </items>
+              <value>
+                <String fx:value="Explicit" />
+              </value>
               <HBox.margin>
                 <Insets left="20.0" />
               </HBox.margin>
@@ -310,6 +324,22 @@
         <Insets left="600.0" top="300.0" />
       </GridPane.margin>
     </VBox>
+    <Pane fx:id="concPlot" maxHeight="300.0" maxWidth="600.0" minHeight="300.0" minWidth="600.0" prefHeight="300.0" prefWidth="600.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
+      <padding>
+        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+      </padding>
+      <GridPane.margin>
+        <Insets left="600.0" top="-300.0" />
+      </GridPane.margin>
+    </Pane>
+    <Pane fx:id="velPlot" maxHeight="300.0" maxWidth="600.0" minHeight="300.0" minWidth="600.0" prefHeight="300.0" prefWidth="600.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
+      <padding>
+        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+      </padding>
+      <GridPane.margin>
+        <Insets top="300.0" />
+      </GridPane.margin>
+    </Pane>
   </children>
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
@@ -317,7 +347,4 @@
   <rowConstraints>
     <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
   </rowConstraints>
-  <stylesheets>
-    <URL value="@style.css" />
-  </stylesheets>
 </GridPane>

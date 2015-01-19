@@ -1,4 +1,4 @@
-package com.ifmo.mathproject.ui;
+package com.ifmo.mathproject.d1ui;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -15,7 +15,7 @@ public class Window extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        loader = new FXMLLoader(getClass().getResource("main_window.fxml"));
+        loader = new FXMLLoader(getClass().getResource("main_window_1d.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
         stage.setScene(scene);
@@ -26,7 +26,7 @@ public class Window extends Application {
 
     @Override
     public void stop() throws Exception {
-        ((Controller) loader.getController()).stopTimer();
+        ((Controller1D) loader.getController()).stopTimer();
     }
 
     public static void main(String[] args) {
