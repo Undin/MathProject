@@ -15,8 +15,8 @@ public class Layer2D extends Layer<double[][]> {
         if (concentration.length != temperature.length) {
             throw new IllegalArgumentException("concentration.length != temperature.length");
         }
-        sizeX = concentration.length;
-        sizeY = concentration[0].length;
+        sizeY = concentration.length;
+        sizeX = concentration[0].length;
     }
 
     public int getSizeX() {
