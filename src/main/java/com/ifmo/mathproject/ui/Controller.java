@@ -1,6 +1,7 @@
 package com.ifmo.mathproject.ui;
 
 import com.ifmo.mathproject.Model;
+import com.ifmo.mathproject.d1.ExplicitMethod;
 import com.ifmo.mathproject.d1.Layer1D;
 import com.ifmo.mathproject.d1.Method1D;
 import com.ifmo.mathproject.d1.NewtonLinearization;
@@ -33,7 +34,7 @@ public class Controller implements Initializable {
 
     private static final String PREC = "%.8f";
 
-    private static final String[] METHODS_NAME = {"Simple Partial Implicit", "Predictor Corrector", "Partial Implicit", "Newton Linearization"};
+    private static final String[] METHODS_NAME = {"Simple Partial Implicit", "Predictor Corrector", "Partial Implicit", "Newton Linearization", "Explicit"};
 
     @FXML
     private LineChart<Double, Double> tempPlot;
@@ -116,9 +117,6 @@ public class Controller implements Initializable {
         velPlot.setCreateSymbols(false);
         velPlot.setLegendVisible(false);
         velPlot.getStyleClass().add("thick-chart");
-        tempPlot.setAnimated(false);
-        velPlot.setAnimated(false);
-        concPlot.setAnimated(false);
 
         deltaZ.setText(String.valueOf(model.getDx()));
         deltaT.setText(String.valueOf(model.getDt()));
@@ -147,7 +145,7 @@ public class Controller implements Initializable {
                 case 2:
                     piMethod();
                     break;
-                case 3:
+                default:
                     nlMethod();
                     break;
             }
@@ -244,6 +242,8 @@ public class Controller implements Initializable {
                 return new PartialImplicitMethod(model, Integer.parseInt(iterValue.getText()));
             case "Newton Linearization":
                 return new NewtonLinearization(model);
+            case "Explicit":
+                return new ExplicitMethod(model);
             default:
                 return null;
         }
