@@ -12,7 +12,7 @@ public class Model {
     public static final double DEFAULT_alpha = 1;
     public static final double DEFAULT_Q = 7 * 1e5;
     public static final double DEFAULT_p = 830;
-    public static final double DEFAULT_Tw = 600;
+    public static final double DEFAULT_Tw = 800;
     public static final double DEFAULT_c = 1980;
     public static final double DEFAULT_lambda = 0.13;
     public static final double DEFAULT_D = DEFAULT_lambda / (DEFAULT_p * DEFAULT_c);

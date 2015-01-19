@@ -4,7 +4,9 @@ import com.ifmo.mathproject.Model;
 import com.ifmo.mathproject.d1.Layer1D;
 import com.ifmo.mathproject.d1.Method1D;
 import com.ifmo.mathproject.d1.NewtonLinearization;
+import com.ifmo.mathproject.d1.PartialImplicitMethod;
 import com.ifmo.mathproject.d1.PredictorCorrectorMethod;
+import com.ifmo.mathproject.d1.SimplePartialImplicitMethod;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -14,10 +16,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 import java.net.URL;
+import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -28,6 +32,8 @@ import java.util.TimerTask;
 public class Controller implements Initializable {
 
     private static final String PREC = "%.8f";
+
+    private static final String[] METHODS_NAME = {"Simple Partial Implicit", "Predictor Corrector", "Partial Implicit", "Newton Linearization"};
 
     @FXML
     private LineChart<Double, Double> tempPlot;
@@ -85,6 +91,11 @@ public class Controller implements Initializable {
     @FXML
     private TextField speedValue;
 
+    @FXML
+    private ChoiceBox<String> methodsSelector;
+    @FXML
+    private TextField iterValue;
+
     private Model model = new Model();
     private double[] steps;
     private Layer1D prevLayer;
@@ -105,6 +116,9 @@ public class Controller implements Initializable {
         velPlot.setCreateSymbols(false);
         velPlot.setLegendVisible(false);
         velPlot.getStyleClass().add("thick-chart");
+        tempPlot.setAnimated(false);
+        velPlot.setAnimated(false);
+        concPlot.setAnimated(false);
 
         deltaZ.setText(String.valueOf(model.getDx()));
         deltaT.setText(String.valueOf(model.getDt()));
@@ -118,8 +132,26 @@ public class Controller implements Initializable {
         tValue.setText(String.valueOf(model.getInitT()));
         lambdaValue.setText(String.valueOf(model.getLambda()));
         cValue.setText(String.valueOf(model.getC()));
-        dValue.setText(String.format("%.9f", model.getD()));
+        dValue.setText(String.format(Locale.US, "%.9f", model.getD()));
         speedValue.setText(String.valueOf(speed));
+
+        methodsSelector.setItems(FXCollections.observableArrayList(METHODS_NAME));
+        methodsSelector.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
+            switch ((int) newValue) {
+                case 0:
+                    spiMethod();
+                    break;
+                case 1:
+                    pcMethod();
+                    break;
+                case 2:
+                    piMethod();
+                    break;
+                case 3:
+                    nlMethod();
+                    break;
+            }
+        });
 
         deltaZ.textProperty().addListener((observable, oldValue, newValue) -> changeValues());
         deltaT.textProperty().addListener((observable, oldValue, newValue) -> changeValues());
@@ -136,6 +168,26 @@ public class Controller implements Initializable {
         dValue.textProperty().addListener((observable, oldValue, newValue) -> changeValues());
         speedValue.textProperty().addListener((observable, oldValue, newValue) -> changeValues());
         updateLabels();
+    }
+
+    private void spiMethod() {
+        iterValue.setText("1");
+        iterValue.setDisable(true);
+    }
+
+    private void pcMethod() {
+        iterValue.setText("2");
+        iterValue.setDisable(true);
+    }
+
+    private void piMethod() {
+        iterValue.setText("");
+        iterValue.setDisable(false);
+    }
+
+    private void nlMethod() {
+        iterValue.setText("");
+        iterValue.setDisable(true);
     }
 
     private void setPlot(LineChart<Double, Double> plot, double[] xAxis, double[] yAxis) {
@@ -175,11 +227,26 @@ public class Controller implements Initializable {
             steps[i] = i * model.getDx();
         }
 
-        method = new NewtonLinearization(model);
+        method = getMethod();
         prevLayer = new Layer1D(concentration, temperature);
         curLayer = method.nextLayer(prevLayer);
         drawLayer();
         resumeClick(event);
+    }
+
+    private Method1D getMethod() {
+        switch (methodsSelector.getValue()) {
+            case "Simple Partial Implicit":
+                return new SimplePartialImplicitMethod(model);
+            case "Predictor Corrector":
+                return new PredictorCorrectorMethod(model);
+            case "Partial Implicit":
+                return new PartialImplicitMethod(model, Integer.parseInt(iterValue.getText()));
+            case "Newton Linearization":
+                return new NewtonLinearization(model);
+            default:
+                return null;
+        }
     }
 
     private void drawLayer() {

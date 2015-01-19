@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.*?>
+<?import java.lang.String?>
 <?import java.net.*?>
 <?import java.net.URL?>
+<?import javafx.collections.*?>
+<?import javafx.collections.FXCollections?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.chart.*?>
 <?import javafx.scene.chart.LineChart?>
@@ -104,10 +107,10 @@
             </Label>
           </children>
           <padding>
-            <Insets top="10.0" fx:id="x1" />
+            <Insets top="5.0" fx:id="x4" />
           </padding>
         </HBox>
-        <HBox alignment="CENTER" prefHeight="22.0" prefWidth="700.0">
+        <HBox alignment="CENTER" prefHeight="22.0" prefWidth="700.0" VBox.margin="$x4">
           <children>
             <Label id="deltaH" font="$x3" text="Δz = ">
               <HBox.margin>
@@ -153,11 +156,8 @@
           <padding>
             <Insets />
           </padding>
-          <VBox.margin>
-            <Insets top="10.0" fx:id="x1" />
-          </VBox.margin>
         </HBox>
-        <HBox alignment="CENTER" prefHeight="22.0" prefWidth="700.0" VBox.margin="$x1">
+        <HBox alignment="CENTER" prefHeight="22.0" prefWidth="700.0" VBox.margin="$x4">
           <children>
             <Label id="deltaH" font="$x3" text="K = ">
               <HBox.margin>
@@ -194,7 +194,7 @@
             <Insets />
           </padding>
         </HBox>
-        <HBox alignment="CENTER" prefHeight="22.0" prefWidth="700.0">
+        <HBox alignment="CENTER" prefHeight="22.0" prefWidth="700.0" VBox.margin="$x4">
           <children>
             <Label id="deltaH" font="$x3" text="Q = ">
               <HBox.margin>
@@ -221,7 +221,7 @@
                 <Insets left="10.0" fx:id="x5" />
               </HBox.margin>
             </Label>
-            <TextField id="deltaT" fx:id="tValue" maxWidth="80.0" minWidth="80.0" prefWidth="80.0">
+            <TextField id="deltaT" fx:id="tValue" maxWidth="100.0" minWidth="100.0" prefWidth="100.0">
               <HBox.margin>
                 <Insets right="10.0" fx:id="x2" />
               </HBox.margin>
@@ -230,11 +230,8 @@
           <padding>
             <Insets />
           </padding>
-          <VBox.margin>
-            <Insets top="10.0" fx:id="x1" />
-          </VBox.margin>
         </HBox>
-        <HBox alignment="CENTER" prefHeight="22.0" prefWidth="700.0">
+        <HBox alignment="CENTER" prefHeight="22.0" prefWidth="700.0" VBox.margin="$x4">
           <children>
             <Label id="deltaH" font="$x3" text="λ = ">
               <HBox.margin>
@@ -270,33 +267,43 @@
           <padding>
             <Insets />
           </padding>
+        </HBox>
+        <HBox alignment="CENTER" maxHeight="37.0" minHeight="37.0" prefHeight="37.0" prefWidth="700.0">
+          <children>
+            <Button fx:id="start" font="$x3" maxHeight="-1.0" minHeight="-1.0" mnemonicParsing="false" onAction="#startClick" prefHeight="-1.0" text="Start" textAlignment="LEFT">
+              <HBox.margin>
+                <Insets left="10.0" right="10.0" fx:id="x6" />
+              </HBox.margin>
+            </Button>
+            <Button id="start" fx:id="pause" font="$x3" maxHeight="-1.0" minHeight="-1.0" mnemonicParsing="false" onAction="#pauseClick" prefHeight="-1.0" text="Pause">
+              <HBox.margin>
+                <Insets left="10.0" right="10.0" fx:id="x6" />
+              </HBox.margin>
+            </Button>
+            <Button id="start" fx:id="resume" font="$x3" maxHeight="-1.0" minHeight="-1.0" mnemonicParsing="false" onAction="#resumeClick" prefHeight="-1.0" text="Resume" HBox.margin="$x6" />
+          </children>
           <VBox.margin>
             <Insets top="10.0" fx:id="x1" />
           </VBox.margin>
         </HBox>
-        <HBox alignment="CENTER" prefHeight="37.0" prefWidth="700.0">
+        <HBox alignment="CENTER" prefHeight="22.0" prefWidth="700.0" VBox.margin="$x4">
           <children>
-            <Button fx:id="start" font="$x3" mnemonicParsing="false" onAction="#startClick" text="Start">
-              <HBox.margin>
-                <Insets left="10.0" right="10.0" fx:id="x6" />
-              </HBox.margin>
-            </Button>
-            <Button id="start" fx:id="pause" font="$x3" mnemonicParsing="false" onAction="#pauseClick" text="Pause">
-              <HBox.margin>
-                <Insets left="10.0" right="10.0" fx:id="x6" />
-              </HBox.margin>
-            </Button>
-            <Button id="start" fx:id="resume" font="$x3" mnemonicParsing="false" onAction="#resumeClick" text="Resume" HBox.margin="$x6" />
-            <Label id="deltaH" font="$x3" text="speed = ">
-              <HBox.margin>
-                <Insets left="30.0" />
-              </HBox.margin>
-            </Label>
+            <Label id="deltaH" font="$x3" text="speed = " />
             <TextField id="deltaT" fx:id="speedValue" maxWidth="80.0" minWidth="80.0" prefWidth="80.0" />
+            <ChoiceBox fx:id="methodsSelector">
+              <items>
+                <FXCollections fx:factory="observableArrayList" />
+              </items>
+              <HBox.margin>
+                <Insets left="20.0" />
+              </HBox.margin>
+            </ChoiceBox>
+            <TextField id="deltaT" fx:id="iterValue" maxWidth="40.0" minWidth="40.0" prefWidth="40.0">
+              <HBox.margin>
+                <Insets left="10.0" fx:id="x5" />
+              </HBox.margin>
+            </TextField>
           </children>
-          <VBox.margin>
-            <Insets top="20.0" />
-          </VBox.margin>
         </HBox>
       </children>
       <GridPane.margin>
