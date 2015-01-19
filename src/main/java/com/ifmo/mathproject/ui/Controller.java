@@ -1,13 +1,6 @@
 package com.ifmo.mathproject.ui;
 
-import com.ifmo.mathproject.Model;
-import com.ifmo.mathproject.d1.ExplicitMethod;
-import com.ifmo.mathproject.d1.Layer1D;
-import com.ifmo.mathproject.d1.Method1D;
-import com.ifmo.mathproject.d1.NewtonLinearization;
-import com.ifmo.mathproject.d1.PartialImplicitMethod;
-import com.ifmo.mathproject.d1.PredictorCorrectorMethod;
-import com.ifmo.mathproject.d1.SimplePartialImplicitMethod;
+import com.ifmo.mathproject.d1.*;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -97,7 +90,7 @@ public class Controller implements Initializable {
     @FXML
     private TextField iterValue;
 
-    private Model model = new Model();
+    private Model1D model = new Model1D();
     private double[] steps;
     private Layer1D prevLayer;
     private Layer1D curLayer;
@@ -123,7 +116,7 @@ public class Controller implements Initializable {
 
         deltaZ.setText(String.valueOf(model.getDx()));
         deltaT.setText(String.valueOf(model.getDt()));
-        stepNumber.setText(String.valueOf(model.getN()));
+        stepNumber.setText(String.valueOf(model.getXN()));
         twValue.setText(String.valueOf(model.getTw()));
         kValue.setText(String.valueOf(model.getK()));
         eValue.setText(String.valueOf(model.getE()));
@@ -211,19 +204,19 @@ public class Controller implements Initializable {
         pauseClick(event);
         resume.setDisable(true);
 
-        double[] temperature = new double[model.getN()];
+        double[] temperature = new double[model.getXN()];
         temperature[0] = model.getTw();
         for (int i = 1; i < temperature.length; i++) {
             temperature[i] = model.getInitT();
         }
 
-        double[] concentration = new double[model.getN()];
+        double[] concentration = new double[model.getXN()];
         concentration[0] = 0;
         for (int i = 1; i < concentration.length; i++) {
             concentration[i] = 1;
         }
 
-        steps = new double[model.getN()];
+        steps = new double[model.getXN()];
         for (int i = 0; i < concentration.length; i++) {
             steps[i] = i * model.getDx();
         }
@@ -255,7 +248,7 @@ public class Controller implements Initializable {
     private void drawLayer() {
         setPlot(tempPlot, steps, curLayer.getTemperature());
         setPlot(concPlot, steps, curLayer.getConcentration());
-        double[] w = new double[model.getN()];
+        double[] w = new double[model.getXN()];
         for (int i = 0; i < w.length; i++) {
             w[i] = -(curLayer.getConcentration()[i] - prevLayer.getConcentration()[i]) / model.getDt();
         }
@@ -297,19 +290,19 @@ public class Controller implements Initializable {
 
     private void changeValues() {
         try {
-            model.setDx(Double.parseDouble(deltaZ.getText()))
-                    .setDt(Double.parseDouble(deltaT.getText()))
-                    .setN(Integer.parseInt(stepNumber.getText()))
-                    .setInitT(Double.parseDouble(tValue.getText()))
-                    .setK(Double.parseDouble(kValue.getText()))
-                    .setE(Double.parseDouble(eValue.getText()))
-                    .setAlpha(Double.parseDouble(alphaValue.getText()))
-                    .setQ(Double.parseDouble(qValue.getText()))
-                    .setP(Double.parseDouble(pValue.getText()))
-                    .setTw(Double.parseDouble(twValue.getText()))
-                    .setLambda(Double.parseDouble(lambdaValue.getText()))
-                    .setC(Double.parseDouble(cValue.getText()))
-                    .setD(Double.parseDouble(dValue.getText()));
+            model.setDx(Double.parseDouble(deltaZ.getText()));
+            model.setDt(Double.parseDouble(deltaT.getText()));
+            model.setXN(Integer.parseInt(stepNumber.getText()));
+            model.setInitT(Double.parseDouble(tValue.getText()));
+            model.setK(Double.parseDouble(kValue.getText()));
+            model.setE(Double.parseDouble(eValue.getText()));
+            model.setAlpha(Double.parseDouble(alphaValue.getText()));
+            model.setQ(Double.parseDouble(qValue.getText()));
+            model.setP(Double.parseDouble(pValue.getText()));
+            model.setTw(Double.parseDouble(twValue.getText()));
+            model.setLambda(Double.parseDouble(lambdaValue.getText()));
+            model.setC(Double.parseDouble(cValue.getText()));
+            model.setD(Double.parseDouble(dValue.getText()));
             speed = (int) Double.parseDouble(speedValue.getText());
             updateLabels();
         } catch (Exception e) {

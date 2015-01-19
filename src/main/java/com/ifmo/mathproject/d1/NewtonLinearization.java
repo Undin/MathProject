@@ -1,6 +1,5 @@
 package com.ifmo.mathproject.d1;
 
-import com.ifmo.mathproject.Model;
 import com.ifmo.mathproject.Utils;
 
 public class NewtonLinearization extends Method1D {
@@ -9,7 +8,7 @@ public class NewtonLinearization extends Method1D {
     private final double lambdaDivPCdz2;
     private final double eDivR;
 
-    public NewtonLinearization(Model model) {
+    public NewtonLinearization(Model1D model) {
         super(model);
         dDivDz2 = model.getD() / (model.getDx() * model.getDx());
         invDt = 1 / model.getDt();

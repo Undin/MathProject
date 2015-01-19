@@ -1,8 +1,7 @@
 package com.ifmo.mathproject.d1;
-import com.ifmo.mathproject.Model;
 
 public class ExplicitMethod extends Method1D {
-    public ExplicitMethod(Model model) {
+    public ExplicitMethod(Model1D model) {
         super(model);
     }
 

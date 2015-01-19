@@ -1,6 +1,5 @@
 package com.ifmo.mathproject.d1;
 
-import com.ifmo.mathproject.Model;
 import com.ifmo.mathproject.Utils;
 
 /**
@@ -16,7 +15,7 @@ public class PartialImplicitMethod extends Method1D {
 
     protected final int iteration;
 
-    public PartialImplicitMethod(Model model, int iteration) {
+    public PartialImplicitMethod(Model1D model, int iteration) {
         super(model);
         this.iteration = iteration;
         this.dx2DivDt = model.getDx() * model.getDx() / model.getDt();

@@ -3,7 +3,7 @@ package com.ifmo.mathproject;
 /**
  * Created by warrior on 10.12.14.
  */
-public class Model {
+public abstract class Model {
 
     public static final double R = 8.134;
 
@@ -17,9 +17,7 @@ public class Model {
     public static final double DEFAULT_lambda = 0.13;
     public static final double DEFAULT_D = DEFAULT_lambda / (DEFAULT_p * DEFAULT_c);
 
-    private double dx = 0.001;
     private double dt = 1;
-    private int N = 100;
     private double initT = 293;
     private double K = DEFAULT_K;
     private double E = DEFAULT_E;
@@ -31,58 +29,36 @@ public class Model {
     private double lambda = DEFAULT_lambda;
     private double D = DEFAULT_D;
 
-    public int getN() {
-        return N;
-    }
-
-    public Model setN(int n) {
-        N = n;
-        return this;
-    }
-
     public double getInitT() {
         return initT;
     }
 
-    public Model setInitT(double initT) {
+    public void setInitT(double initT) {
         this.initT = initT;
-        return this;
-    }
-
-    public double getDx() {
-        return dx;
-    }
-
-    public Model setDx(double dx) {
-        this.dx = dx;
-        return this;
     }
 
     public double getDt() {
         return dt;
     }
 
-    public Model setDt(double dt) {
+    public void setDt(double dt) {
         this.dt = dt;
-        return this;
     }
 
     public double getK() {
         return K;
     }
 
-    public Model setK(double k) {
+    public void setK(double k) {
         K = k;
-        return this;
     }
 
     public double getE() {
         return E;
     }
 
-    public Model setE(double e) {
+    public void setE(double e) {
         E = e;
-        return this;
     }
 
     public double getR() {
@@ -93,63 +69,56 @@ public class Model {
         return alpha;
     }
 
-    public Model setAlpha(double alpha) {
+    public void setAlpha(double alpha) {
         this.alpha = alpha;
-        return this;
     }
 
     public double getQ() {
         return Q;
     }
 
-    public Model setQ(double q) {
+    public void setQ(double q) {
         Q = q;
-        return this;
     }
 
     public double getP() {
         return p;
     }
 
-    public Model setP(double p) {
+    public void setP(double p) {
         this.p = p;
-        return this;
     }
 
     public double getTw() {
         return Tw;
     }
 
-    public Model setTw(double tw) {
+    public void setTw(double tw) {
         Tw = tw;
-        return this;
     }
 
     public double getC() {
         return c;
     }
 
-    public Model setC(double c) {
+    public void setC(double c) {
         this.c = c;
-        return this;
     }
 
     public double getLambda() {
         return lambda;
     }
 
-    public Model setLambda(double lambda) {
+    public void setLambda(double lambda) {
         this.lambda = lambda;
-        return this;
     }
 
     public double getD() {
         return D;
     }
 
-    public Model setD(double d) {
+    public void setD(double d) {
         D = d;
-        return this;
     }
 
     public double getTm() {
@@ -175,5 +144,4 @@ public class Model {
     public double getDeltaR() {
         return getDeltaH() * getBetta();
     }
-
 }

@@ -5,15 +5,15 @@ import java.util.Objects;
 /**
  * Created by warrior on 10.12.14.
  */
-public abstract class Method<D, T extends Layer<D>> {
+public abstract class Method<M extends Model, D, T extends Layer<D>> {
 
-    protected final Model model;
+    protected final M model;
 
-    public Method(Model model) {
+    public Method(M model) {
         this.model = Objects.requireNonNull(model);
     }
 
-    public Model getModel() {
+    public M getModel() {
         return model;
     }
 
