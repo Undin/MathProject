@@ -31,7 +31,10 @@ public class NewtonLinearization extends Method1D {
         double[] prevIterationConcentration = prevLayerConcentration;
         double[] prevIterationTemperature = prevLayerTemperature;
 
-        for (int i = 0; i < size; i++) {
+        cur[0] = 1;
+        next[0] = 0;
+        freeCoef[0] = prevIterationConcentration[0];
+        for (int i = 1; i < size - 1; i++) {
             prev[i] = dDivDz2;
             double exp = Math.exp(-eDivR / prevIterationTemperature[i]);
             cur[i] = -invDt -
@@ -40,12 +43,16 @@ public class NewtonLinearization extends Method1D {
             next[i] = dDivDz2;
             freeCoef[i] = prevLayerConcentration[i] * (-invDt + model.getK() * (1 - model.getAlpha()) * exp);
         }
-        freeCoef[0] -= prev[0] * prevIterationConcentration[0];
-        freeCoef[size - 1] -= next[size - 1] * prevIterationConcentration[size - 1];
+        cur[size - 1] = 1;
+        prev[size - 1] = 0;
+        freeCoef[size - 1] = prevIterationConcentration[size - 1];
 
         prevIterationConcentration = Utils.tridiagonalMatrixAlgorithm(prev, cur, next, freeCoef);
 
-        for (int i = 0; i < size; i++) {
+        cur[0] = 1;
+        next[0] = 0;
+        freeCoef[0] = prevIterationTemperature[0];
+        for (int i = 1; i < size - 1; i++) {
             prev[i] = lambdaDivPCdz2;
             double ultimateFactor = model.getQ() * model.getK() / model.getC() * Math.pow(prevIterationConcentration[i], model.getAlpha()) *
                     Math.exp(- eDivR / prevIterationTemperature[i]);
@@ -53,8 +60,9 @@ public class NewtonLinearization extends Method1D {
             next[i] = lambdaDivPCdz2;
             freeCoef[i] = -prevIterationTemperature[i] * invDt - ultimateFactor * (1 - eDivR / prevIterationTemperature[i]);
         }
-        freeCoef[0] -= prev[0] * prevIterationTemperature[0];
-        freeCoef[size - 1] -= next[size - 1] * prevIterationTemperature[size - 1];
+        cur[size - 1] = 1;
+        prev[size - 1] = 0;
+        freeCoef[size - 1] = prevIterationTemperature[size - 1];
 
         prevIterationTemperature = Utils.tridiagonalMatrixAlgorithm(prev, cur, next, freeCoef);
 
