@@ -41,7 +41,7 @@ public class PartialImplicitMethod extends Method1D {
         double[] prevIterationTemperature = prevLayerTemperature;
 
         for (int it = 0; it < iteration; it++) {
-            for (int i = 0; i < size; i++) {
+            for (int i = 1; i < size; i++) {
                 prev[i] = -model.getD();
                 cur[i] = dx2DivDt +
                         2 * model.getD() +
@@ -49,7 +49,9 @@ public class PartialImplicitMethod extends Method1D {
                 next[i] = -model.getD();
                 freeCoef[i] = dx2DivDt * prevLayerConcentration[i];
             }
-            freeCoef[0] -= prev[0] * prevIterationConcentration[0];
+            freeCoef[0] = prevIterationConcentration[0];
+            cur[0] = 1;
+            next[0] = 0;
             freeCoef[size - 1] -= next[size - 1] * prevIterationConcentration[size - 1];
 
             prevIterationConcentration = Utils.tridiagonalMatrixAlgorithm(prev, cur, next, freeCoef);
@@ -60,7 +62,9 @@ public class PartialImplicitMethod extends Method1D {
                 next[i] = -lambdaDivCDivP;
                 freeCoef[i] = dx2OnKOnQDivC * Math.pow(prevIterationConcentration[i], model.getAlpha()) * Math.exp(-EOnR / prevIterationTemperature[i]) + dx2DivDt * prevLayerTemperature[i];
             }
-            freeCoef[0] -= prev[0] * prevIterationTemperature[0];
+            freeCoef[0] = prevIterationTemperature[0];
+            cur[0] = 1;
+            next[0] = 0;
             freeCoef[size - 1] -= next[size - 1] * prevIterationTemperature[size - 1];
 
             prevIterationTemperature = Utils.tridiagonalMatrixAlgorithm(prev, cur, next, freeCoef);
