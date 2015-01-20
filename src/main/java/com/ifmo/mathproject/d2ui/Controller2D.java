@@ -1,6 +1,9 @@
 package com.ifmo.mathproject.d2ui;
 
-import com.ifmo.mathproject.d2.*;
+import com.ifmo.mathproject.d2.ExplicitMethod;
+import com.ifmo.mathproject.d2.Layer2D;
+import com.ifmo.mathproject.d2.Method2D;
+import com.ifmo.mathproject.d2.Model2D;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -154,10 +157,30 @@ public class Controller2D implements Initializable {
         iterValue.setDisable(true);
     }
 
+    private Canvas tempCanvas;
+    private Canvas concCanvas;
+    private Canvas velCanvas;
+
     private void setPlot(Pane pane, double[][] values, double maxValue) {
         double width = pane.getWidth() - 10;
         double height = pane.getHeight() - 10;
         Canvas canvas = new Canvas(pane.getWidth(), pane.getHeight());
+        if (pane.equals(tempPlot)) {
+            if (tempCanvas != null) {
+                pane.getChildren().remove(tempCanvas);
+            }
+            tempCanvas = canvas;
+        } else if (pane.equals(concPlot)) {
+            if (concCanvas != null) {
+                pane.getChildren().remove(concCanvas);
+            }
+            concCanvas = canvas;
+        } else if (pane.equals(velPlot)) {
+            if (velCanvas != null) {
+                pane.getChildren().remove(velCanvas);
+            }
+            velCanvas = canvas;
+        }
         pane.getChildren().add(canvas);
 
         int lineWidth = (int) (width / values[0].length) + 1;
@@ -166,7 +189,8 @@ public class Controller2D implements Initializable {
         GraphicsContext context = canvas.getGraphicsContext2D();
         for (int y = 0; y < values.length; y++) {
             for (int x = 0; x < values[0].length; x++) {
-                double val = values[y][x] / maxValue;
+                double val = Math.max(0, values[y][x] / maxValue);
+                val = Math.min(val, 1);
                 context.setFill(Color.rgb((int) (val * 255), 0, (int) (255 * (1 - val))));
                 context.fillRect(5 + x * lineWidth, 5 + y * lineHeight, lineWidth, lineHeight);
             }
@@ -213,13 +237,15 @@ public class Controller2D implements Initializable {
     private void drawLayer() {
         setPlot(tempPlot, curLayer.getTemperature(), model.getTw());
         setPlot(concPlot, curLayer.getConcentration(), 1);
-//        double[][] w = new double[model.getYN()][model.getXN()];
-//        for (int i = 0; i < w.length; i++) {
-//            for (int j = 0; j < w.length; j++) {
-//                w[i][j] = -(curLayer.getConcentration()[i] - prevLayer.getConcentration()[i]) / model.getDt();
-//            }
-//        }
-//        setPlot(velPlot, steps, w);
+        double[][] w = new double[model.getYN()][model.getXN()];
+        double maxW = -Double.MAX_VALUE;
+        for (int i = 0; i < w.length; i++) {
+            for (int j = 0; j < w[0].length; j++) {
+                w[i][j] = -(curLayer.getConcentration()[i][j] - prevLayer.getConcentration()[i][j]) / model.getDt();
+                maxW = Math.max(maxW, w[i][j]);
+            }
+        }
+        setPlot(velPlot, w, maxW);
     }
 
     @FXML
