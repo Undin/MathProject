@@ -250,7 +250,7 @@ public class Controller1D implements Initializable {
         setPlot(concPlot, steps, curLayer.getConcentration());
         double[] w = new double[model.getXN()];
         for (int i = 0; i < w.length; i++) {
-            w[i] = -(curLayer.getConcentration()[i] - prevLayer.getConcentration()[i]) / model.getDt();
+            w[i] = model.getK() * Math.pow(curLayer.getConcentration()[i], model.getAlpha()) * Math.exp(-model.getE() / model.getR() / curLayer.getTemperature()[i]);
         }
         setPlot(velPlot, steps, w);
     }
